@@ -1,0 +1,36 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onLoaded" navigatedTo="onNavigatingTo">
+    <Page.actionBar>
+        <ActionBar title="Notes" icon="" class="action-bar">
+            <ActionItem ios.position="right" text="{{userName}}"></ActionItem>
+            <ActionItem ios.systemIcon="16" android.systemIcon="ic_subtract" ios.position="right" text="login">
+                <Image src="{{avatarUrl}}" class="avatar" height="30" padding="4"/>
+            </ActionItem>
+            <ActionItem tap="{{add}}" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="add note"></ActionItem>
+            <ActionItem tap="logout" ios.systemIcon="16" android.systemIcon="ic_add" ios.position="right" text="logout" android.position="popup"></ActionItem>
+        </ActionBar>
+    </Page.actionBar>
+
+    <StackLayout style="padding: 5">
+        <Label text="Your stored notes" class="h2 text-center" textWrap="true" />
+        <StackLayout class="hr-light m-10">
+            
+        </StackLayout>
+        <StackLayout visibility="{{ isEmpty ? 'visible' : 'collapsed' }}">
+            <Label class="text-center font-weight-bold" text="There are no notes yet. Create one?" />
+            <Button text="Add note" class="btn" tap="{{add}}" />
+        </StackLayout>
+        <TextView hint="title" text="{{ newTitle }}" class="input input-border" backgroundColor="#e7e7e7" style="margin:10" />
+        <TextField hint="content" text="{{ newContent }}" class="input input-border" backgroundColor="#e7e7e7" style="margin:10" />
+                    <Button text="Add note" class="btn" tap="{{add}}" />
+        <ListView class='notes-list' items="{{ notes }}" itemTap="onItemTap" id="lv_notes">
+            <ListView.itemTemplate>
+            <StackLayout>
+                <GridLayout class='note-container' rows="*, 4*" columns="*">
+                    <Label class='note-title' text="{{ title }}" textWrap="true" />
+                    <Label class='note-content body' textWrap="true" row="1" text="{{ shortContent }}" />
+                </GridLayout>
+            </StackLayout>
+            </ListView.itemTemplate>
+        </ListView>
+    </StackLayout>
+</Page>
