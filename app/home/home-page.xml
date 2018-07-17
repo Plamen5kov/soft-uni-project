@@ -19,9 +19,9 @@
             <Label class="text-center font-weight-bold" text="There are no notes yet. Create one?" />
             <Button text="Add note" class="btn" tap="{{add}}" />
         </StackLayout>
-        <TextView hint="title" text="{{ newTitle }}" class="input input-border" backgroundColor="#e7e7e7" style="margin:10" />
-        <TextField hint="content" text="{{ newContent }}" class="input input-border" backgroundColor="#e7e7e7" style="margin:10" />
-                    <Button text="Add note" class="btn" tap="{{add}}" />
+        <TextField hint="title" text="{{ newTitle }}" class="input input-border" backgroundColor="#e7e7e7" style="margin:10" />
+        <TextView hint="content" text="{{ newContent }}" class="input input-border" backgroundColor="#e7e7e7" style="margin:10" />
+        <Button text="Add note" class="btn" tap="{{add}}" />
         <ListView class='notes-list' items="{{ notes }}" itemTap="onItemTap" id="lv_notes">
             <ListView.itemTemplate>
             <StackLayout>
