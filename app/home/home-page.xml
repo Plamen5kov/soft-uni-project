@@ -27,7 +27,7 @@
             <StackLayout>
                 <GridLayout class='note-container' rows="*, 4*" columns="*">
                     <Label class='note-title' text="{{ title }}" textWrap="true" />
-                    <Label class='note-content body' textWrap="true" row="1" text="{{ shortContent }}" />
+                    <Label class='note-content body' textWrap="true" row="1" text="{{ content }}" />
                 </GridLayout>
             </StackLayout>
             </ListView.itemTemplate>
