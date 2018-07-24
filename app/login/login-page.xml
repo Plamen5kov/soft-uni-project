@@ -1,12 +1,14 @@
 <Page navigatingTo="onNavigatingTo" class="page" xmlns="http://www.nativescript.org/tns.xsd" xmlns:Gradient="nativescript-gradient">
     <ActionBar title="LOGIN" backgroundColor="#334c86"></ActionBar>
-    <FlexboxLayout flexDirection="column">
+    <StackLayout>
         <Label text="The Definitive Notes App" class="text-center h2"/>
         <Image src="~/images/logo.jpg" height="70" />
         <TextField hint="Email" class="input input-border input-login" backgroundColor="#e7e7e7" style="margin:10" />
         <TextField hint="Password" secure="true" class="input input-border input-login" backgroundColor="#e7e7e7" style="margin:10" />
         <Button text="Log In" tap="signIn" class="btn btn-primary btn-login" />
         <Button text="Sign Up" tap="signUp" class="btn btn-primary btn-sign-up" />
-    </FlexboxLayout>
+        <!-- <Image src="~/images/mark.png" tap="fbLogin"/> -->
+        <Image src="~/images/sergei.jpg" tap="googleLogin"/>
 
+    </StackLayout>
 </Page>

@@ -9,7 +9,7 @@
     "crash_reporting": false,
     "storage": false,
     "facebook_auth": false,
-    "google_auth": false,
+    "google_auth": true,
     "admob": false,
     "invites": false,
     "ml_kit": false
