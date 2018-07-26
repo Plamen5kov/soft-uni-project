@@ -4,15 +4,18 @@ var firebase = require("nativescript-plugin-firebase");
 const _ = require("lodash");
 
 var firebaseInitialized = false;
-var presentEntries = [];
 
 class HomeViewModel extends Observable {
-    constructor(page) {
+    constructor(loggedInUser, page) {
       super();
+      this.presentEntries = [];
+      this.loggedInUser = loggedInUser
       this.newTitle = '';
       this.newContent = '';
       this.notes = new ObservableArray();
       this._initializeFirebase();
+      this.page = page;
+      this.getNotes();
     }
 
     _initializeFirebase() {
@@ -48,13 +51,13 @@ class HomeViewModel extends Observable {
 
                     this.notes.push(sortedResult);
                     console.log(result);
-                    presentEntries = _.keys(result.value);
+                    this.presentEntries = _.keys(result.value);
                 } else {
                     console.log(result.error);
                 }
               };
         
-              firebase.query(onQueryEvent, '/notes/anon', {
+              firebase.query(onQueryEvent, '/notes/' + this.loggedInUser, {
                 singleEvent: true,
                 orderBy: {
                     type: firebase.QueryOrderByType.CHILD,
@@ -63,16 +66,15 @@ class HomeViewModel extends Observable {
               });
 
               let onChildEvent = (result) => {
-                  debugger;
-                  if (presentEntries.indexOf(result.key) === -1) {
+                  if (this.presentEntries.indexOf(result.key) === -1) {
                     console.log('childAdded');
                     console.log(result);
                     this.notes.push(result.value);
-                    presentEntries.push(result.key);
+                    this.presentEntries.push(result.key);
                   }
                 // this.notes.push(result.value);
               }
-              firebase.addChildEventListener(onChildEvent, "/notes/anon").then((listenerWrapper) => {
+              firebase.addChildEventListener(onChildEvent, "/notes/" + this.loggedInUser).then((listenerWrapper) => {
                   var path = listenerWrapper.path;
                   var listeners = listenerWrapper.listeners; // an Array of listeners added
                   // you can store the wrapper somewhere to later call 'removeEventListeners'
@@ -95,7 +97,7 @@ class HomeViewModel extends Observable {
             };
             try {
                 firebase.push(
-                    '/notes/anon',
+                    '/notes/' + this.loggedInUser,
                     note
                 ).then(() => {
                     alert('Added a note entry!');

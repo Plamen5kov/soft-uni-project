@@ -11,7 +11,10 @@ let facebookPlugin = require("nativescript-facebook");
 application.on(application.launchEvent, function (args) {
     facebookPlugin.init("497331027376357");
 });
-
+application.on(application.uncaughtErrorEvent, (err) => {
+    console.log(err.toString())
+    return true
+})
 application.run({ moduleName: "app-root" });
 
 /*

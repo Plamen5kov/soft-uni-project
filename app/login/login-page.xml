@@ -7,8 +7,9 @@
         <TextField hint="Password" secure="true" class="input input-border input-login" backgroundColor="#e7e7e7" style="margin:10" />
         <Button text="Log In" tap="signIn" class="btn btn-primary btn-login" />
         <Button text="Sign Up" tap="signUp" class="btn btn-primary btn-sign-up" />
-        <!-- <Image src="~/images/mark.png" tap="fbLogin"/> -->
-        <Image src="~/images/sergei.jpg" tap="googleLogin"/>
-
+        <GridLayout rows="*" columns="*, *">
+            <Image src="~/images/mark.png" tap="fbLogin" col="1"/>
+            <Image src="~/images/sergei.jpg" tap="googleLogin"/>
+        </GridLayout>
     </StackLayout>
 </Page>
